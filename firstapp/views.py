@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from firstapp.models import Stud
+from firstapp.models import Stud, Stud2
 from django.http import HttpResponse
 from firstapp.forms import studentform
 # Create your views here.
@@ -37,5 +37,18 @@ def deletestud(request,myid):
     return HttpResponse("<h1>Record Deleted</h1>")
 
 def showforms(request):
-    st = studentform()
+    if request.method == "POST":
+        st = studentform(request.POST)
+        if st.is_valid():
+            name = st.cleaned_data['sname']
+            email = st.cleaned_data['semail']
+            st2 = Stud2(snm = name, semail = email)
+            st2.save()
+
+    else:
+        print("This is get request")
+        st = studentform()
+
     return render(request,'firstapp/home.html',{'so':st})
+
+

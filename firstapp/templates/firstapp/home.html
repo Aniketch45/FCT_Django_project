@@ -10,7 +10,16 @@
 <body>
     <h1>Home page</h1><hr>
     <div>
-        {{ so }}
+        <form method="post" name='frm1'>
+            {% csrf_token %}
+            <table>
+              {{ so.as_table }}
+
+              
+              {% comment %}we can access so.as_email, so.as_ul, so.as_table, and using field name {% endcomment %}
+            </table>
+            <input type="submit">
+        </form>
     {% comment %} <form method="post">
         <label>Enter Roll Number</label>
         <input type="number" name="rollno" placeholder="Enter student no" id="rollno"><br>
