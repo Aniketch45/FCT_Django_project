@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from firstapp.models import Stud, Stud2, Insertstud
-from django.http import HttpResponse
-from firstapp.forms import student, studentform
+from django.http import *
+from firstapp.forms import StudentForm2, StudentForm
 # Create your views here.
 
 def home(request):
@@ -38,7 +38,7 @@ def deletestud(request,myid):
 
 def showforms(request):
     if request.method == "POST":
-        st = studentform(request.POST)
+        st = StudentForm(request.POST)
         if st.is_valid():
             name = st.cleaned_data['sname']
             email = st.cleaned_data['semail']
@@ -47,24 +47,39 @@ def showforms(request):
 
     else:
         print("This is get request")
-        st = studentform()
+        st = StudentForm()
 
     return render(request,'firstapp/home.html',{'so':st})
 
 def insertstud(request):
     if request.method == "POST":
-        st2 = student(request.POST)
+        st2 = StudentForm2(request.POST)
         if st2.is_valid():
             no3 = st2.cleaned_data['sno']
-            name3 = st2.cleaned_data['name']
+            name3 = st2.cleaned_data['name'] 
             fees3 = st2.cleaned_data['sfees']
             st3 = Insertstud(no = no3, name = name3, fees = fees3)
             st3.save()
 
     else:    
         print("this is get request")
-        st2 = student()
+        st2 = StudentForm2()
 
     return render(request,'firstapp/insert.html',{'sar':st2})
+
+def update(request, sid):
+    if request.method == 'POST':
+        sno = request.POST.get('t1')
+        sname = request.POST.get('t2')
+        sfees = request.POST.get('t3')
+        st = Insertstud(id = sid, no = sno, name = sname, fees = sfees)
+        st.save()
+        return HttpResponseRedirect('/firstapp/home/')
+    
+    else:
+        studobject = Insertstud.objects.get(id=sid)
+        st = StudentForm2()
+        
+    return render(request,'firstapp/update.html', {'io': studobject, 'form': st})
 
 

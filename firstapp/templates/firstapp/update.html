@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Your visible content goes here -->
+    <h1>Update Employee</h1>
+    <form name='formw' method="POST" action="#">
+        {% csrf_token %}
+        <labek>sno:</label>
+        <input type="text" name="t1" value={{io.no}}><br>
+        <label>SName:</label>
+        <input type="text" name="t2" value={{ io.name }}><br>
+        <label>sfees:</label>
+        <input type="text" name="t3" value={{ io.fees }}><br>
+        <br>
+        <input type="submit" value="update">
+    </form>
+</body>
+</html>

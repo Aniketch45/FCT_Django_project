@@ -9,12 +9,14 @@
 <body style="background-color: aquamarine;">
     <h1>Student Information</h1>
     {% if stud %}
-    <table style="height: 250px; width: 400px; border: 1px solid blue; text-align: center; font-size: large; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+    <table style="height: 250px; width: 500px; border: 1px solid blue; text-align: center; font-size: large; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
         <tr>
+            <th>ID</th>
             <th>SNO</th>
             <th>Name</th>
-            <th>age</th>
+            <th>Age</th>
             <th>Email</th>
+            <th>Action</th>
         </tr>
         {% for i in stud %}
         <tr>
@@ -23,6 +25,7 @@
             <td>{{ i.sname }}</td>
             <td>{{ i.age }}</td>
             <td>{{ i.email }}</td>
+            <td><a href="{% url 'update2' i.id %}"><button>Update</button></a></td>
         </tr>
         {% endfor %}
     </table>
