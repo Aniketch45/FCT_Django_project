@@ -7,31 +7,28 @@
     {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
 </head>
 <body style="background-color: aquamarine;">
-    <h1>Student Information</h1>
-    {% if stud %}
+    <h1>info</h1>
+    {% comment %} {% if Insertstud %} {% endcomment %}
     <table style="height: 250px; width: 500px; border: 1px solid blue; text-align: center; font-size: large; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
         <tr>
             <th>ID</th>
             <th>SNO</th>
             <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th>fees</th>
         </tr>
-        {% for i in Stud %}
+        {% comment %} {% for i in Insertstud %} {% endcomment %}
         <tr>
             <td>{{ i.id }}</td>
-            <td>{{ i.sno }}</td>
-            <td>{{ i.sname }}</td>
-            <td>{{ i.age }}</td>
-            <td>{{ i.email }}</td>
+            <td>{{ i.no }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.fees }}</td>
             <td><a href="{% url 'update2' i.id %}"><button>Update</button></a></td>
         </tr>
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
     </table>
-    {% else %}
+    {% comment %} {% else %} {% endcomment %}
         <h2>Records not found</h2>
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
     <a href="{% url 'home2' %}" target="_blank">Back to Home</a>
 </body>
 </html>

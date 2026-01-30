@@ -9,5 +9,7 @@ urlpatterns = [
     path('delete/<int:myid>',views.deletestud,name='delete'),   
     path('forms/',views.showforms,name='forms'),
     path('insertstud/',views.insertstud,name='insertstud'),
-    path('update2/<int:sid>',views.update,name='update2'),
+    path('update2/',views.update,name='update2'),
+    path('stud/',views.Stud,name='stud'),
+    path('image/',views.image,name='image'),
 ]

@@ -72,14 +72,19 @@ def update(request, sid):
         sno = request.POST.get('t1')
         sname = request.POST.get('t2')
         sfees = request.POST.get('t3')
-        st = Insertstud(id = sid, no = sno, name = sname, fees = sfees)
+        st = Stud(id = sid, no = sno, name = sname, fees = sfees)
         st.save()
-        return HttpResponseRedirect('/firstapp/home/')
+        return HttpResponseRedirect('/firstapp/stud.html')
     
     else:
         studobject = Insertstud.objects.get(id=sid)
         st = StudentForm2()
         
-    return render(request,'firstapp/update.html', {'io': studobject, 'form': st})
+    return render(request,'firstapp/stud.html', {'io': studobject, 'form': st})
 
 
+def home3(request):
+    return render(request,'firstapp/stud.html')
+
+def image(request):
+    return render(request,'firstapp/image_display.html')
