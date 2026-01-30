@@ -2,6 +2,8 @@ from django.shortcuts import render
 from firstapp.models import Stud, Stud2, Insertstud
 from django.http import *
 from firstapp.forms import StudentForm2, StudentForm
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 def home(request):
@@ -87,4 +89,12 @@ def home3(request):
     return render(request,'firstapp/stud.html')
 
 def image(request):
-    return render(request,'firstapp/image_display.html')
+    if request.method == "POST":
+        to = request.POST.get('txt1')
+        msg = request.POST.get('txt2')
+        # print("To:",to)
+        # print("Message :",msg)
+        send_mail("testmail",msg,settings.EMAIL_HOST_USER,[to])
+        return render(request,'firstapp/image_display.html')
+    else:
+        return render(request,'firstapp/image_display.html')
